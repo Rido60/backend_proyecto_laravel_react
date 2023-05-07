@@ -1,0 +1,29 @@
+POST http://localhost:8000/api/v1/auth/registro
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Joseph",
+    "email": "joseph@gmail.com",
+    "password": "Joseph123"
+}
+
+### autenticacion (LOGIN)
+POST http://localhost:8000/api/v1/auth/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "jose@gmail.com",
+    "password": "123"
+}
+
+### perfil
+GET http://localhost:8000/api/v1/auth/perfil
+Accept: application/json
+Authorization: Bearer 8|e5piIPLjeZLottOsZdykWEhYjZ97ZIE6MCUsXcmB
+
+### Salir
+POST http://localhost:8000/api/v1/auth/salir
+Accept: application/json
+Authorization: Bearer 5|PtGFmvtYS2dJ5n1E7bnihVpd9p0wswG5YGYlBCch
