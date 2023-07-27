@@ -10,17 +10,17 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        # code...
+        # validacion
         $credenciales = $request->validate([
             "email" => "required|email",
             "password" => "required"
         ]);
 
         if (!Auth::attempt($credenciales)){
-            return response()->json(["messaje"=> "Usuario no Correcto"],401);
+            return response()->json(["messaje"=> "Usuario no Autenticado"],401);
         }
 
-        // generar e token con sactum
+        // generar el token con sactum
         $user = Auth::user();
         $token = $user->createtoken("token personal")->plainTextToken;
 
@@ -29,6 +29,7 @@ class AuthController extends Controller
             "access_token"=> $token,
             "token_type"=> "Bearer",
             "usuario"=>$user
+
         ]);
     }
 
@@ -36,9 +37,11 @@ class AuthController extends Controller
     {
         # validar
         $request->validate([
-            "name" => "required",
+            "name" => "required|alpha",
             "email" => "required|email|unique:users,email",
-            "password" => "required"
+            "password" => "required|min:8|max:15"
+
+
         ]);
         // si falla no pasa al siguiente(guardar) y da error de 422
         //guardar
@@ -50,7 +53,7 @@ class AuthController extends Controller
         $usuario->save();
 
         //return
-        return response()->json(["message"=> "Usuario Registrado"],201);
+        return response()->json(["message"=> "Usuario Registrado con exito"],201);
     }
 
     public function miPerfil()
@@ -64,7 +67,7 @@ class AuthController extends Controller
     {
         # salir
         Auth::user()->tokens()->delete();
-        return response()->json(["message"=> "Salir"]);
+        return response()->json(["message"=> "Salio correctamente"]);
     }
 }
 

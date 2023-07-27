@@ -1,0 +1,38 @@
+### listar
+GET  http://127.0.0.1:8000/api/producto
+
+### guardar categoria
+POST http://127.0.0.1:8000/api/producto
+Accept: : application/json
+Content-Type: application/json
+
+{
+    "nombre": "Catre",
+    "precio": 1850,
+    "cantidad":10,
+    "stock": 10,
+    "descripcion": "Para el dormitorio",
+    "categoria_id": 4
+}
+
+### mostrar producto por id
+GET  http://127.0.0.1:8000/api/producto/1
+Accept: : application/json
+
+
+### modificar categoria por id
+PUT  http://127.0.0.1:8000/api/producto/1
+Accept: : application/json
+Content-Type: application/json
+
+{
+    "nombre": "Ropero modificado",
+    "precio": 700,
+    "cantidad": 50,
+    "stock": 50,
+    "descripcion": "detalles de muebles modificado",
+    "categoria_id": 1,
+}
+
+### eliminar categoria
+DELETE   http://127.0.0.1:8000/api/producto/2

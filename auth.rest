@@ -3,9 +3,20 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "Joseph",
-    "email": "joseph@gmail.com",
-    "password": "Joseph123"
+    "name": "sf",
+    "email": "sf@sisfac.com",
+    "password": "12345678"
+}
+
+### valor inicial
+POST http://localhost:8000/api/v1/auth/registro
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "email": "admin@sisfac.com",
+    "password": "adminsisfac"
 }
 
 ### autenticacion (LOGIN)
@@ -14,16 +25,27 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "email": "jose@gmail.com",
-    "password": "123"
+    "email": "maria@gmail.com",
+    "password": "maria123"
 }
 
 ### perfil
 GET http://localhost:8000/api/v1/auth/perfil
 Accept: application/json
-Authorization: Bearer 8|e5piIPLjeZLottOsZdykWEhYjZ97ZIE6MCUsXcmB
+Authorization: Bearer 24|GmHhV1hsDj9VhDtaIzWzTkQbdoaeyivcLkBm4S56
 
 ### Salir
 POST http://localhost:8000/api/v1/auth/salir
 Accept: application/json
 Authorization: Bearer 5|PtGFmvtYS2dJ5n1E7bnihVpd9p0wswG5YGYlBCch
+
+### SCategoria registro
+POST http://localhost:8000/api/categoria/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Maria",
+    "email": "maria@gmail.com",
+    "password": "maria123"
+}
