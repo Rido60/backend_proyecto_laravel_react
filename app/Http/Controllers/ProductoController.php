@@ -11,12 +11,23 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //listar
-        $producto = Producto::get();
+        $limit = $request->limit?$request->limit:5;
+        if(isset($request->q)){
+             $productos = Producto::where('nombre','like','%'.$request->q.'%')
+                            ->with('categoria')
+                            ->orderBy('id','desc')
+                            ->paginate($limit);
+        }else{
+        $productos = Producto::orderBy('id','desc')
+                            ->with('categoria')
+                            ->paginate($limit);
+        }
+        //$producto = Producto::get();
 
-        return response()->json($producto);
+        return response()->json($productos, 200);
     }
 
     /**
@@ -24,6 +35,13 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        //validar
+        $request->validate([
+            "nombre"=> "required",
+            "precio"=> "required",
+            "categoria_id" => "required"
+        ]);
+
         //guardar datos
         $prod = new Producto();
         $prod->nombre = $request->nombre;

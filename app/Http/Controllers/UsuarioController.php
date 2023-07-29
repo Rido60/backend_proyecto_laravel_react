@@ -49,7 +49,7 @@ class UsuarioController extends Controller
     public function show(string $id)
     {
         //buscar por id y muestra un recurso
-        $user = User::findorfail($id);
+        $user = User::findOrfail($id);
         //$users = User::get();
 
         return response()->json($user);
@@ -63,10 +63,10 @@ class UsuarioController extends Controller
         //modificar un recurso por ID en la BD
         $request->validate([
             "name"=> "required",
-            "email"=> "required|email|unique:users,email",
+            "email"=> "required|email|unique:users,email,$id",
             "password" => "required"
         ]);
-        $user = User::findorfail($id);
+        $user = User::findOrfail($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);

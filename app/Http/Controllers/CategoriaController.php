@@ -54,7 +54,11 @@ class CategoriaController extends Controller
         //$categoria = DB::select ("select * from categorias where id = ?",  [$id]);
 
          //listar con query Builder
-        $categoria = DB::table("categorias")->find($id);
+       // $categoria = DB::table("categorias")->find($id);
+
+        //ELOQUENT ORM
+        $categoria = Categoria::with('productos')->find($id);
+        //$categoria = productos;
         return response()->json($categoria, 200);
     }
 
@@ -72,7 +76,7 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //modificar un recurso por ID en la BD
+        //modificar un recurso por ID en la BD ELOQUENT ORM
         //listar con ELOQUENT ORM
         $categoria = Categoria::find($id);
         $categoria ->nombre = $request->nombre;

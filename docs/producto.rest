@@ -1,5 +1,5 @@
 ### listar
-GET  http://127.0.0.1:8000/api/producto
+GET  http://127.0.0.1:8000/api/producto?page=1&limit=9&q=zapato
 
 ### guardar categoria
 POST http://127.0.0.1:8000/api/producto
@@ -7,12 +7,12 @@ Accept: : application/json
 Content-Type: application/json
 
 {
-    "nombre": "Catre",
-    "precio": 1850,
-    "cantidad":10,
-    "stock": 10,
-    "descripcion": "Para el dormitorio",
-    "categoria_id": 4
+    "nombre": "Escritorio",
+    "precio": 459.28,
+    "cantidad":6,
+    "stock": 6,
+    "descripcion": "de roble",
+    "categoria_id": 1
 }
 
 ### mostrar producto por id
